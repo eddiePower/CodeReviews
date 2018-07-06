@@ -1,11 +1,10 @@
-﻿<Window x:Class="jeylabsCodeReviews.MainWindow"
+﻿<Window x:Class="jeylabsCodeReviews.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:jeylabsCodeReviews"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        mc:Ignorable="d"  Height="600" Width="800"
+        Title="JayLabs Natural Language Shape Creator">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -21,7 +20,7 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TextBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" x:Name="freeTextInputTextBox" Text="{Binding Path=FreeTextInput, UpdateSourceTrigger=PropertyChanged}" />
-        <Canvas x:Name="shapeDrawingCanvas" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="3" DataContext="{Binding Path=DrawShape}"  />
+        <TextBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" x:Name="FreeTextInputTextBox" Text="{Binding Path=FreeTextInput, UpdateSourceTrigger=PropertyChanged}" />
+        <Canvas x:Name="ShapeDrawingCanvas" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="3" DataContext="{Binding Path=DrawShape}"  />
     </Grid>
 </Window>
