@@ -26,6 +26,7 @@ namespace jeylabsCodeReviews.ViewModels
             {
                 if (Equals(baseShape, value)) return;
                 baseShape = value;
+                OnPropertyChanged(nameof(DrawShape));
             }
         }
 

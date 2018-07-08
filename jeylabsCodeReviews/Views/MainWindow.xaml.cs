@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Shapes;
 
 namespace jeylabsCodeReviews.Views
 {
@@ -9,6 +8,7 @@ namespace jeylabsCodeReviews.Views
     public partial class MainWindow : Window
     {
         private ShapeDrawerPageViewModel pageViewModel;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -16,10 +16,6 @@ namespace jeylabsCodeReviews.Views
             
             pageViewModel = new ShapeDrawerPageViewModel();
             DataContext = pageViewModel;
-
-            Shape shapeToDraw = (Rectangle) pageViewModel.DrawShape;
-            if(shapeToDraw != null)
-                ShapeDrawingCanvas.Children.Add(shapeToDraw);
         }
     }
 }
