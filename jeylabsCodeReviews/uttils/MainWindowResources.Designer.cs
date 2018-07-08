@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace jeylabsCodeReviews {
+namespace jeylabsCodeReviews.uttils {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace jeylabsCodeReviews {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("jeylabsCodeReviews.MainWindowResources", typeof(MainWindowResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("jeylabsCodeReviews.uttils.MainWindowResources", typeof(MainWindowResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

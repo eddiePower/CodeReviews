@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace jeylabsCodeReviews.ViewModels
+namespace jeylabsCodeReviews.uttils
 {
 
     public class ObservableObject : INotifyPropertyChanged

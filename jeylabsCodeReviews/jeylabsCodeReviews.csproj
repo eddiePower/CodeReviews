@@ -54,13 +54,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="MainWindowResources.Designer.cs">
+    <Compile Include="uttils\MainWindowResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MainWindowResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Models\ShapesModel.cs" />
-    <Compile Include="ViewModels\ObservableObject.cs" />
+    <Compile Include="uttils\ObservableObject.cs" />
     <Compile Include="ViewModels\ShapeDrawerPageViewModel.cs" />
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -95,7 +95,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainWindowResources.resx">
+    <EmbeddedResource Include="uttils\MainWindowResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MainWindowResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
