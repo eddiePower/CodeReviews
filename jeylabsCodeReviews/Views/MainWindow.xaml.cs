@@ -17,9 +17,9 @@ namespace jeylabsCodeReviews.Views
             pageViewModel = new ShapeDrawerPageViewModel();
             DataContext = pageViewModel;
 
-            Shape funnyStuff = pageViewModel.DrawShape;
-
-            ShapeDrawingCanvas.Children.Add(funnyStuff);
+            Shape shapeToDraw = (Rectangle) pageViewModel.DrawShape;
+            if(shapeToDraw != null)
+                ShapeDrawingCanvas.Children.Add(shapeToDraw);
         }
     }
 }

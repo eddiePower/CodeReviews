@@ -1,82 +1,88 @@
 ﻿using jeylabsCodeReviews.ViewModels;
 using System;
-using System.Windows.Media;
 using System.Windows.Shapes;
+using jeylabsCodeReviews.Models;
 
 namespace jeylabsCodeReviews
 {
     public class ShapeDrawerPageViewModel : ObservableObject
     {
+        private TextInputViewModel txtInputViewModel;
+        private ShapeDrawerViewModel shapesDrawerViewModel;
+        private ShapesModel shapesModel;
+
         private string textIn;
         private Shape canvasDrawing;
-        private Ellipse circleDrawing;
-        private Rectangle rectangleDrawing;
-        private Polygon triangleDrawing;
+
+        private Action<Shape> ShapeCreatedReadyToPaint;
 
         public ShapeDrawerPageViewModel()
         {
-            Console.WriteLine("Inside Constructor for ShapePageViewModel.");
+            //TODO: Remove all Debug lines.
+            Console.WriteLine(MainWindowResources.MainPageViewModel_ConstructorDebug);
             textIn = "";
-            rectangleDrawing = new Rectangle();
-            canvasDrawing = rectangleDrawing;
-            circleDrawing = new Ellipse();
-            triangleDrawing = new Polygon();
+            canvasDrawing = new Rectangle();            
+            ShapeCreatedReadyToPaint += DrawShapeToScreen;
+
+            shapesDrawerViewModel = new ShapeDrawerViewModel();
+            shapesModel = new ShapesModel();
+            txtInputViewModel = new TextInputViewModel(shapesDrawerViewModel);
+        }
+
+        private void DrawShapeToScreen(Shape obj)
+        {
+            Console.WriteLine("The new Shape to draw is " + obj);
+
+
+
+            shapesDrawerViewModel.DrawShape = obj;
+
+
+        }
+
+        public Shape ShowShape(Shape obj)
+        {
+            if (obj.Name == "Rectangle")
+            {
+                return (Rectangle) obj;
+            }
+            else if (obj.Name == "Circle")
+            {
+                return (Ellipse) obj;
+            }
+
+            return null;
         }
 
         public string FreeTextInput
         {
             get
             {
+                Console.WriteLine("Returning To Screen:: " + textIn);
                 return textIn;
             }
             set
             {
                 if (textIn == value) return;
                 textIn = value;
-
-                //clean up with string toLower and one search
-                if (textIn == "Rectangle" || textIn == "rectangle")
-                {
-                    canvasDrawing = rectangleDrawing;
-                    canvasDrawing.Width = 95;
-                    canvasDrawing.Height = 165;
-                    canvasDrawing.Stroke = new SolidColorBrush(Colors.Black);
-                    canvasDrawing.Fill = new SolidColorBrush(Colors.White);
-                    rectangleDrawing = (Rectangle) canvasDrawing;
-                    canvasDrawing = null;
-                    DrawShape = rectangleDrawing;
-                } //Also add in elipse and other circle names.
-                else if(textIn == "Circle" || textIn == "circle")
-                {
-                    Console.WriteLine("The Circle Drawing has been chosen now painting to screen.");
-                    canvasDrawing = circleDrawing;
-                    canvasDrawing.Stroke = new SolidColorBrush(Colors.Black);
-                    canvasDrawing.Fill = new SolidColorBrush(Colors.White);
-                    canvasDrawing.StrokeThickness = 2;
-
-                    // Set the width and height of the Ellipse.
-                    canvasDrawing.Width = 200;
-                    canvasDrawing.Height = 100;
-                    circleDrawing = (Ellipse) canvasDrawing;
-                    canvasDrawing = null;
-                    DrawShape = circleDrawing;
-                }
-                
+                //send the new text value to the stringInput View MOdel for processing,
+                txtInputViewModel.ShapeDescription = textIn;
+                Console.WriteLine("SETTING textIn to:: " + textIn);
                 OnPropertyChanged("FreeTextInput");
             }
         }
 
-        //will change to sub class shape
+        //will pass and recieve shapesDrawerViewModel
         public Shape DrawShape
         {
             get
             {
-                return canvasDrawing;
+                return shapesDrawerViewModel.DrawShape;
             }
             set
             {
-                if (canvasDrawing == value) return;
-                canvasDrawing = value;
+                if (Equals(shapesDrawerViewModel.DrawShape, value)) return;
+                shapesDrawerViewModel.DrawShape = value;
                 OnPropertyChanged("DrawShape");
 
             }
