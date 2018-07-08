@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jeylabsCodeReviews", "jeylabsCodeReviews\jeylabsCodeReviews.csproj", "{E91311B6-49BA-4DE7-A5E3-C89CF9C8E675}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{03A7D1B0-0132-437D-88AB-B8A6ED7AE545}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
