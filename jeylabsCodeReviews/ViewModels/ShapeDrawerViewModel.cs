@@ -10,11 +10,13 @@ namespace jeylabsCodeReviews.ViewModels
         private Rectangle rectangleDrawing;
         private Polygon triangleDrawing;
         private Shape baseShape;
-        
+        private ShapeDrawerPageViewModel shapeDraweringPageViewModel;
 
-        public ShapeDrawerViewModel()
+
+        public ShapeDrawerViewModel(ShapeDrawerPageViewModel mainPageViewModel)
         {
             Console.WriteLine("Debug: in the ShapesDrawer View Model");
+            shapeDraweringPageViewModel = mainPageViewModel;
             rectangleDrawing = new Rectangle();
             circleDrawing = new Ellipse();
             triangleDrawing = new Polygon();
@@ -27,6 +29,7 @@ namespace jeylabsCodeReviews.ViewModels
             {
                 if (Equals(baseShape, value)) return;
                 baseShape = value;
+                shapeDraweringPageViewModel.ShapeCreatedReadyToPaint?.Invoke(baseShape);
                 OnPropertyChanged(nameof(DrawShape));
             }
         }
