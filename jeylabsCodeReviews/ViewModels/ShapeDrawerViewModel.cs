@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Shapes;
+﻿using System.Windows.Shapes;
 using jeylabsCodeReviews.uttils;
 
 namespace jeylabsCodeReviews.ViewModels
@@ -15,7 +14,7 @@ namespace jeylabsCodeReviews.ViewModels
 
         public ShapeDrawerViewModel(ShapeDrawerPageViewModel mainPageViewModel)
         {
-            Console.WriteLine("Debug: in the ShapesDrawer View Model");
+//            Console.WriteLine("Debug: in the ShapesDrawer View Model");
             shapeDraweringPageViewModel = mainPageViewModel;
             rectangleDrawing = new Rectangle();
             circleDrawing = new Ellipse();

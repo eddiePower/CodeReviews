@@ -8,7 +8,7 @@ using jeylabsCodeReviews.uttils;
 
 namespace jeylabsCodeReviews
 {
-    public class ShapeDrawerPageViewModel : ObservableObject
+    public class ShapeDrawerPageViewModel : ObservableObject, IDisposable
     {
         private TextInputViewModel txtInputViewModel;
         private ShapeDrawerViewModel shapesDrawerViewModel;
@@ -39,7 +39,7 @@ namespace jeylabsCodeReviews
             if (obj is Rectangle)
             {
                 ((Rectangle) obj).Name = "Rectangle";
-                ((Rectangle) obj).Width = 34;
+                ((Rectangle) obj).Width = 334;
                 ((Rectangle) obj).Height = 134;
                 ((Rectangle)obj).Stroke = new SolidColorBrush(Colors.Black);
                 ((Rectangle)obj).Fill = new SolidColorBrush(Colors.AliceBlue);
@@ -49,7 +49,7 @@ namespace jeylabsCodeReviews
             else if (obj is Ellipse)
             {
                 ((Ellipse) obj).Name = "Circle";
-                ((Ellipse) obj).Width = 34;
+                ((Ellipse) obj).Width = 134;
                 ((Ellipse) obj).Height = 134;
                 ((Ellipse) obj).Stroke = new SolidColorBrush(Colors.Black);
                 ((Ellipse) obj).Fill = new SolidColorBrush(Colors.AliceBlue);
@@ -59,11 +59,11 @@ namespace jeylabsCodeReviews
             else if(obj is Polygon)
             {
                 ((Polygon) obj).Name = "Triangle";
-                ((Polygon)obj).Points = new PointCollection(new Point[] {new Point(0, 40), new Point(40, 0), new Point(40,90)});
-                ((Polygon) obj).Width = 34;
+                ((Polygon) obj).Points = new PointCollection(new Point[] {new Point(0, 40), new Point(40, 0), new Point(40,90)});
+                ((Polygon) obj).Width = 94;
                 ((Polygon) obj).Height = 134;
                 ((Polygon) obj).Stroke = new SolidColorBrush(Colors.Black);
-                ((Polygon)obj).Fill = new SolidColorBrush(Colors.Blue);
+                ((Polygon) obj).Fill = new SolidColorBrush(Colors.AliceBlue);
 
                 DrawShape = (Polygon) obj;
             }
@@ -116,6 +116,12 @@ namespace jeylabsCodeReviews
                 shapesDrawerViewModel.DrawShape = value;
                 OnPropertyChanged(nameof(DrawShape));
             }
+        }
+
+        //TODO: ADD DISPOSE METHOD TO FREE UP MEM AND UNHOOK ACTION EVENTS.
+        public void Dispose()
+        {
+            ShapeCreatedReadyToPaint -= DrawShapeToScreen;
         }
     }
 }

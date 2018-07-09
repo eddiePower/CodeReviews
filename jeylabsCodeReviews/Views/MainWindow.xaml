@@ -20,10 +20,10 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Label FontSize="33" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Content="Natural Language Shape Drawerer."></Label>
+        <Label FontSize="33" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Content="Natural Language Shape Generator." />
         <Label Grid.Row="0" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Enter the shape you want to draw with its properties, For Example Draw a rectangle with height of 23 and width 35." Margin="93,78,67,10" />
         <TextBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" x:Name="FreeTextInputTextBox" Text="{Binding Path=FreeTextInput}" KeyUp="TextBox_KeyEnterUpdate" />
         <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" FontSize="25" Content="Enter a shape to build press Enter to Run." HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Canvas x:Name="ShapeDrawingCanvas" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="3" DataContext="{Binding Path=DrawShape, UpdateSourceTrigger=PropertyChanged}" />
+        <Canvas x:Name="ShapeDrawingCanvas" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="3" DataContext="{Binding Path=DrawShape}" Margin="0,0,0,10" />
     </Grid>
 </Window>

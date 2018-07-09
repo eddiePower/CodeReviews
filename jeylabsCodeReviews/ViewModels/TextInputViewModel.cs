@@ -25,7 +25,7 @@ namespace jeylabsCodeReviews.ViewModels
             {
                 if (string.Equals(shapeDescription, value)) return;
                 shapeDescription = value;
-                Console.WriteLine(MainWindowResources.TextInputViewModel_ShapeDescription_, shapeDescription);
+//                Console.WriteLine(MainWindowResources.TextInputViewModel_ShapeDescription_, shapeDescription);
 
                 var processedWords = ProcessString(shapeDescription);
 
@@ -57,14 +57,7 @@ namespace jeylabsCodeReviews.ViewModels
                 {
                     shapesDrawerVm.DrawShape = new Polygon();
                 }
-
-
-
             }
-            //use linq to search for words from key words in model
-
-            //pass the shape, (width, height, radius,) => default value params = width =0, etc.
-
 
             return words;
         }

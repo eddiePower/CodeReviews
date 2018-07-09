@@ -13,7 +13,7 @@ namespace jeylabsCodeReviews.Models
 
         public ShapesModel()
         {
-            Console.WriteLine("Inside the Model Ctor.");
+//            Console.WriteLine("Inside the Model Ctor.");
             width = 0;
             height = 0;
             points = new List<int>();
