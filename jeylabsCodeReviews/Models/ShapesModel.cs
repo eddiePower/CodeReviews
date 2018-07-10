@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using jeylabsCodeReviews.uttils;
-using jeylabsCodeReviews.ViewModels;
 
 namespace jeylabsCodeReviews.Models
 {
@@ -13,7 +11,6 @@ namespace jeylabsCodeReviews.Models
 
         public ShapesModel()
         {
-//            Console.WriteLine("Inside the Model Ctor.");
             width = 0;
             height = 0;
             points = new List<int>();

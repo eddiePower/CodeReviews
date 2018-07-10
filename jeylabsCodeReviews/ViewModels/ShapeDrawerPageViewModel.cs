@@ -1,12 +1,11 @@
-﻿using jeylabsCodeReviews.ViewModels;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using jeylabsCodeReviews.Models;
 using jeylabsCodeReviews.uttils;
 
-namespace jeylabsCodeReviews
+namespace jeylabsCodeReviews.ViewModels
 {
     public class ShapeDrawerPageViewModel : ObservableObject, IDisposable
     {
@@ -21,8 +20,6 @@ namespace jeylabsCodeReviews
 
         public ShapeDrawerPageViewModel()
         {
-            //TODO: Remove all Debug lines.
-            Console.WriteLine(MainWindowResources.MainPageViewModel_ConstructorDebug);
             textIn = "";
             canvasDrawing = new Rectangle();            
             ShapeCreatedReadyToPaint += DrawShapeToScreen;
@@ -34,38 +31,36 @@ namespace jeylabsCodeReviews
 
         private void DrawShapeToScreen(Shape obj)
         {
-            //ToDo: Replace the Width, Height, and Colours with variables retrieved from 
+            //ToDo:  Replace Colours with variables retrieved from 
             // ToDo: the string sort / processing.
-            if (obj is Rectangle)
+            if (obj.Name == "rectangle" && obj is Rectangle rectangle)
             {
-                ((Rectangle) obj).Name = "Rectangle";
-                ((Rectangle) obj).Width = 334;
-                ((Rectangle) obj).Height = 134;
-                ((Rectangle)obj).Stroke = new SolidColorBrush(Colors.Black);
-                ((Rectangle)obj).Fill = new SolidColorBrush(Colors.AliceBlue);
+                rectangle.Stroke = new SolidColorBrush(Colors.Black);
+                rectangle.Fill = new SolidColorBrush(Colors.AliceBlue);
 
-                DrawShape = (Rectangle) obj;
+                DrawShape = rectangle;
             }
-            else if (obj is Ellipse)
+            else if (obj.Name== "circle" && obj is Ellipse ellipse)
             {
-                ((Ellipse) obj).Name = "Circle";
-                ((Ellipse) obj).Width = 134;
-                ((Ellipse) obj).Height = 134;
-                ((Ellipse) obj).Stroke = new SolidColorBrush(Colors.Black);
-                ((Ellipse) obj).Fill = new SolidColorBrush(Colors.AliceBlue);
+                ellipse.Stroke = new SolidColorBrush(Colors.Black);
+                ellipse.Fill = new SolidColorBrush(Colors.AliceBlue);
 
-                DrawShape = (Ellipse) obj;
+                DrawShape = ellipse;
             }
-            else if(obj is Polygon)
+            else if(obj.Name == "Triangle" && obj is Polygon polygon)
             {
-                ((Polygon) obj).Name = "Triangle";
-                ((Polygon) obj).Points = new PointCollection(new Point[] {new Point(0, 40), new Point(40, 0), new Point(40,90)});
-                ((Polygon) obj).Width = 94;
-                ((Polygon) obj).Height = 134;
-                ((Polygon) obj).Stroke = new SolidColorBrush(Colors.Black);
-                ((Polygon) obj).Fill = new SolidColorBrush(Colors.AliceBlue);
+                polygon.Points = new PointCollection(new[] {new Point(0, 40), new Point(40, 0), new Point(40,90)});
+                polygon.Stroke = new SolidColorBrush(Colors.Black);
+                polygon.Fill = new SolidColorBrush(Colors.AliceBlue);
 
-                DrawShape = (Polygon) obj;
+                DrawShape = polygon;
+            }
+            else if (obj.Name == "oval" && obj is Ellipse oval)
+            {
+                oval.Stroke = new SolidColorBrush(Colors.Black);
+                oval.Fill = new SolidColorBrush(Colors.AliceBlue);
+
+                DrawShape = oval;
             }
 
         }
@@ -118,7 +113,6 @@ namespace jeylabsCodeReviews
             }
         }
 
-        //TODO: ADD DISPOSE METHOD TO FREE UP MEM AND UNHOOK ACTION EVENTS.
         public void Dispose()
         {
             ShapeCreatedReadyToPaint -= DrawShapeToScreen;

@@ -33,9 +33,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>algorithm.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -54,12 +58,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\ShapesModel.cs" />
     <Compile Include="uttils\MainWindowResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MainWindowResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Models\ShapesModel.cs" />
     <Compile Include="uttils\ObservableObject.cs" />
     <Compile Include="ViewModels\ShapeDrawerPageViewModel.cs" />
     <Page Include="Views\MainWindow.xaml">
@@ -97,6 +101,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="uttils\MainWindowResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>MainWindowResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -107,6 +112,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\algorithm %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\algorithm.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="algorithm.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

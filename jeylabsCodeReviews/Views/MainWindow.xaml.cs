@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Shapes;
+using jeylabsCodeReviews.ViewModels;
 
 namespace jeylabsCodeReviews.Views
 {

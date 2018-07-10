@@ -61,40 +61,30 @@ namespace jeylabsCodeReviews.uttils {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Circle Drawing has been chosen now painting to screen..
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static string Circle_DebugText {
+        internal static System.Drawing.Bitmap algorithm__1_ {
             get {
-                return ResourceManager.GetString("Circle_DebugText", resourceCulture);
+                object obj = ResourceManager.GetObject("algorithm__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inside Constructor for ShapePageViewModel..
+        ///   Looks up a localized string similar to Enter a shape to build press Enter to Run..
         /// </summary>
-        internal static string MainPageViewModel_ConstructorDebug {
+        internal static string MainWindow_BuilderHelpText {
             get {
-                return ResourceManager.GetString("MainPageViewModel_ConstructorDebug", resourceCulture);
+                return ResourceManager.GetString("MainWindow_BuilderHelpText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inside the TextInputViewModel: ShapeDescription method, ready for processing
-        ///Then Pass processed array of strings to theShapeDrawerViewModel to process and build shape object. oh btw string sent was {0}.
+        ///   Looks up a localized string similar to Enter the shape you want to draw with its properties, For Example Draw a rectangle with a height of 23 and a width 35..
         /// </summary>
-        internal static string TextInputViewModel_ShapeDescription_ {
+        internal static string MainWindow_ExampleHelpText {
             get {
-                return ResourceManager.GetString("TextInputViewModel_ShapeDescription_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Inside the TextInputViewModel: ShapeDescription method,.
-        /// </summary>
-        internal static string TextInputViewModel_ShapeDescription_Inside_the_TextInputViewModel__ShapeDescription_method_ {
-            get {
-                return ResourceManager.GetString("TextInputViewModel_ShapeDescription_Inside_the_TextInputViewModel__ShapeDescripti" +
-                        "on_method_", resourceCulture);
+                return ResourceManager.GetString("MainWindow_ExampleHelpText", resourceCulture);
             }
         }
     }

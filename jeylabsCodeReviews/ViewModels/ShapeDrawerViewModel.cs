@@ -5,20 +5,13 @@ namespace jeylabsCodeReviews.ViewModels
 {
     public class ShapeDrawerViewModel : ObservableObject
     {
-        private Ellipse circleDrawing;
-        private Rectangle rectangleDrawing;
-        private Polygon triangleDrawing;
         private Shape baseShape;
         private ShapeDrawerPageViewModel shapeDraweringPageViewModel;
 
 
         public ShapeDrawerViewModel(ShapeDrawerPageViewModel mainPageViewModel)
         {
-//            Console.WriteLine("Debug: in the ShapesDrawer View Model");
             shapeDraweringPageViewModel = mainPageViewModel;
-            rectangleDrawing = new Rectangle();
-            circleDrawing = new Ellipse();
-            triangleDrawing = new Polygon();
         }
 
         public Shape DrawShape
@@ -32,8 +25,5 @@ namespace jeylabsCodeReviews.ViewModels
                 OnPropertyChanged(nameof(DrawShape));
             }
         }
-
-
-
     }
 }
