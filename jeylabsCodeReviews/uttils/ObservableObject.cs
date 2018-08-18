@@ -4,7 +4,7 @@ namespace jeylabsCodeReviews.uttils
 {
 
     public class ObservableObject : INotifyPropertyChanged
-        {
+    {
             public event PropertyChangedEventHandler PropertyChanged;
 
             protected void OnPropertyChanged(string propName)
@@ -13,5 +13,5 @@ namespace jeylabsCodeReviews.uttils
                 //set the property name with this class
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
             }
-        }
+    }
 }
