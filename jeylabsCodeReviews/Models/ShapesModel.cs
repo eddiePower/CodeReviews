@@ -1,29 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Media;
-using System.Windows.Shapes;
-using jeylabsCodeReviews.Annotations;
+﻿using System.Collections.Generic;
+using jeylabsCodeReviews.uttils;
 
 namespace jeylabsCodeReviews.Models
 {
-    public class ShapesModel : Shape, INotifyPropertyChanged
+    public class ShapesModel : ObservableObject
     {
         private int width;
         private int height;
         private List<int> points;
-        private string name;
 
         public ShapesModel()
         {
-            name = "shape";
             width = 0;
             height = 0;
             points = new List<int>();
         }
 
-        public new int Width
+        public int Width
         {
             get { return width; }
             set
@@ -34,7 +27,7 @@ namespace jeylabsCodeReviews.Models
             }
         }
 
-        public new int Height
+        public int Height
         {
             get { return height; }
             set
@@ -42,17 +35,6 @@ namespace jeylabsCodeReviews.Models
                 if (height == value) return;
                 height = value;
                 OnPropertyChanged(nameof(Height));
-            }
-        }
-
-        public new string Name
-        {
-            get { return name; }
-            set
-            {
-                if (name == value) return;
-                name = value;
-                OnPropertyChanged(nameof(Name));
             }
         }
 
@@ -65,37 +47,6 @@ namespace jeylabsCodeReviews.Models
                 points = value;
                 OnPropertyChanged(nameof(Points));
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        protected override Geometry DefiningGeometry { get; }
-
-        public static explicit operator Rectangle(ShapesModel v)
-        {
-            var rect = new Rectangle { Name = v.Name, Width = v.Width, Height = v.Height };
-
-            return rect;
-        }
-
-        public static explicit operator Ellipse(ShapesModel v)
-        {
-            var circle = new Ellipse { Name = v.Name, Width = v.Width, Height = v.Height };
-
-            return circle;
-        }
-       
-        public static explicit operator Polygon(ShapesModel v)
-        {
-            var triangle = new Polygon { Name = v.Name, Width = v.Width, Height = v.Height };
-
-            return triangle;
         }
     }
 }
