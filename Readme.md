@@ -1,6 +1,6 @@
 <p>This is a Code puzzle for a Company interview process.
 
-A natural speech shape building application, it will take in natural english and in turn build the desired shape. An Example would be <i>"Draw a Rectangle with the width of 34 and a height of 322."</i> 
+A natural language shape building application, it will take in natural english and in turn build the desired shape. An Example would be <i>"Draw a Rectangle with the width of 34 and a height of 322."</i> 
 Its main purpose is to show problem solving skills from a written description General C# syntax and code principals. 
 
 Class's so far:
