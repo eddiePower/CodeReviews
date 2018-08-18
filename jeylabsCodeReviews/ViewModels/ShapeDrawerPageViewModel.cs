@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using jeylabsCodeReviews.Models;
 using jeylabsCodeReviews.uttils;
 
 namespace jeylabsCodeReviews.ViewModels
@@ -11,58 +10,50 @@ namespace jeylabsCodeReviews.ViewModels
     {
         private TextInputViewModel txtInputViewModel;
         private ShapeDrawerViewModel shapesDrawerViewModel;
-        private ShapesModel shapesModel;
-
         private string textIn;
-        private Shape canvasDrawing;
-
         public Action<Shape> ShapeCreatedReadyToPaint;
 
         public ShapeDrawerPageViewModel()
         {
-            textIn = "";
-            canvasDrawing = new Rectangle();            
+            textIn = "";            
             ShapeCreatedReadyToPaint += DrawShapeToScreen;
 
             shapesDrawerViewModel = new ShapeDrawerViewModel(this);
-            shapesModel = new ShapesModel();
             txtInputViewModel = new TextInputViewModel(shapesDrawerViewModel);
         }
 
         private void DrawShapeToScreen(Shape obj)
         {
-            //ToDo:  Replace Colours with variables retrieved from 
-            // ToDo: the string sort / processing.
-            if (obj.Name == "rectangle" && obj is Rectangle rectangle)
+            switch (obj.Name)
             {
-                rectangle.Stroke = new SolidColorBrush(Colors.Black);
-                rectangle.Fill = new SolidColorBrush(Colors.AliceBlue);
+                //ToDo:  Replace Colours with variables retrieved from 
+                // ToDo: the string sort / processing.
+                case "rectangle" when obj is Rectangle rectangle:
+                    rectangle.Stroke = new SolidColorBrush(Colors.Black);
+                    rectangle.Fill = new SolidColorBrush(Colors.AliceBlue);
 
-                DrawShape = rectangle;
+                    DrawShape = rectangle;
+                    break;
+                case "circle" when obj is Ellipse ellipse:
+                    ellipse.Stroke = new SolidColorBrush(Colors.Black);
+                    ellipse.Fill = new SolidColorBrush(Colors.AliceBlue);
+
+                    DrawShape = ellipse;
+                    break;
+                case "triangle" when obj is Polygon polygon:
+                    polygon.Points = new PointCollection(new[] {new Point(0, 40), new Point(40, 0), new Point(40,90)});
+                    polygon.Stroke = new SolidColorBrush(Colors.Black);
+                    polygon.Fill = new SolidColorBrush(Colors.AliceBlue);
+
+                    DrawShape = polygon;
+                    break;
+                case "oval" when obj is Ellipse oval:
+                    oval.Stroke = new SolidColorBrush(Colors.Black);
+                    oval.Fill = new SolidColorBrush(Colors.AliceBlue);
+
+                    DrawShape = oval;
+                    break;
             }
-            else if (obj.Name== "circle" && obj is Ellipse ellipse)
-            {
-                ellipse.Stroke = new SolidColorBrush(Colors.Black);
-                ellipse.Fill = new SolidColorBrush(Colors.AliceBlue);
-
-                DrawShape = ellipse;
-            }
-            else if(obj.Name == "Triangle" && obj is Polygon polygon)
-            {
-                polygon.Points = new PointCollection(new[] {new Point(0, 40), new Point(40, 0), new Point(40,90)});
-                polygon.Stroke = new SolidColorBrush(Colors.Black);
-                polygon.Fill = new SolidColorBrush(Colors.AliceBlue);
-
-                DrawShape = polygon;
-            }
-            else if (obj.Name == "oval" && obj is Ellipse oval)
-            {
-                oval.Stroke = new SolidColorBrush(Colors.Black);
-                oval.Fill = new SolidColorBrush(Colors.AliceBlue);
-
-                DrawShape = oval;
-            }
-
         }
 
         public Shape ShowShape(Shape obj)

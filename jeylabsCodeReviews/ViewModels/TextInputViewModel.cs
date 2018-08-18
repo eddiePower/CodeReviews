@@ -23,7 +23,7 @@ namespace jeylabsCodeReviews.ViewModels
             {
                 if (string.Equals(shapeDescription, value)) return;
                 shapeDescription = value;
-                var processedWords = ProcessString(shapeDescription);
+                ProcessString(shapeDescription);
 
                 OnPropertyChanged(nameof(ShapeDescription));
             }
@@ -41,7 +41,7 @@ namespace jeylabsCodeReviews.ViewModels
                 //we know it will follow the set syntax of
                 //Draw a/(n) <shape> with a/(n) <measurement> of <amount>
                 // and a/(n) <Measurement> of <amount>
-                words.Add(((string) match.Value).ToLower());
+                words.Add(match.Value.ToLower());
             }
 
                 int width = -1;
@@ -62,7 +62,6 @@ namespace jeylabsCodeReviews.ViewModels
                     }
 
                     var myRect = new Rectangle {Name = "rectangle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0};
-
                     shapesDrawerVm.DrawShape = myRect;
                 }
                 else if (words.Contains("circle"))
@@ -79,9 +78,9 @@ namespace jeylabsCodeReviews.ViewModels
                         int.TryParse(words[loc + 2], out height);
                     }
 
-                var myCircle = new Ellipse {Name = "circle", Width = width, Height = height};
+                   var myCircle = new Ellipse {Name = "circle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0 }; 
+                   shapesDrawerVm.DrawShape = myCircle;
 
-                    shapesDrawerVm.DrawShape = myCircle;
                 }
                 else if (words.Contains("triangle"))
                 {
@@ -97,9 +96,9 @@ namespace jeylabsCodeReviews.ViewModels
                         int.TryParse(words[loc + 2], out height);
                     }
 
-                    var myTriangle = new Polygon {Name = "triangle", Width = width, Height = height};
-
+                    var myTriangle = new Polygon {Name = "triangle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0 };
                     shapesDrawerVm.DrawShape = myTriangle;
+
                 }
                 else if (words.Contains("oval"))
                 {
@@ -115,9 +114,9 @@ namespace jeylabsCodeReviews.ViewModels
                         int.TryParse(words[loc + 2], out height);
                     }
 
-                    var myOval = new Ellipse {Name = "oval", Width = width, Height = height};
-
+                    var myOval = new Ellipse {Name = "oval", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0 };
                     shapesDrawerVm.DrawShape = myOval;
+
                 }            
 
             return words;
