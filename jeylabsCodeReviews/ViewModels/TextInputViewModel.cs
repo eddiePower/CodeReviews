@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Shapes;
-using jeylabsCodeReviews.Models;
 using jeylabsCodeReviews.uttils;
 
 namespace jeylabsCodeReviews.ViewModels
@@ -30,7 +29,7 @@ namespace jeylabsCodeReviews.ViewModels
             }
         }
 
-        public void ProcessString(string enteredStringValue)
+        public List<string> ProcessString(string enteredStringValue)
         {
             //Split string by words
             var matches = Regex.Matches(enteredStringValue, @"\w+[^\s]*\w+|\w");
@@ -38,12 +37,10 @@ namespace jeylabsCodeReviews.ViewModels
 
             foreach (Match match in matches)
             {
-                /*
-                 * Store the words in a List of strings for analysis
-                 * we know it will follow the set syntax of
-                 * Draw a/(n) <shape> with a/(n) <measurement> of <amount>
-                 * and a/(n) <Measurement> of <amount>
-                 */
+                //Store the words in a List of strings for analysis
+                //we know it will follow the set syntax of
+                //Draw a/(n) <shape> with a/(n) <measurement> of <amount>
+                // and a/(n) <Measurement> of <amount>
                 words.Add(match.Value.ToLower());
             }
 
@@ -64,10 +61,10 @@ namespace jeylabsCodeReviews.ViewModels
                         int.TryParse(words[loc + 2], out height);
                     }
 
-                    var myRect = new ShapesModel {Name = "rectangle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0};
-                    shapesDrawerVm.DrawShape = (Rectangle) myRect;
+                    var myRect = new Rectangle {Name = "rectangle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0};
+                    shapesDrawerVm.DrawShape = myRect;
                 }
-                else if (words.Contains("circle") || words.Contains("oval"))
+                else if (words.Contains("circle"))
                 {
                     if (words.Contains("width"))
                     {
@@ -81,8 +78,8 @@ namespace jeylabsCodeReviews.ViewModels
                         int.TryParse(words[loc + 2], out height);
                     }
 
-                   var myCircle = new ShapesModel {Name = "circle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0 }; 
-                   shapesDrawerVm.DrawShape = (Ellipse) myCircle;
+                   var myCircle = new Ellipse {Name = "circle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0 }; 
+                   shapesDrawerVm.DrawShape = myCircle;
 
                 }
                 else if (words.Contains("triangle"))
@@ -99,10 +96,30 @@ namespace jeylabsCodeReviews.ViewModels
                         int.TryParse(words[loc + 2], out height);
                     }
 
-                    var myTriangle = new ShapesModel {Name = "triangle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0 };
-                    shapesDrawerVm.DrawShape = (Polygon) myTriangle;
+                    var myTriangle = new Polygon {Name = "triangle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0 };
+                    shapesDrawerVm.DrawShape = myTriangle;
 
-                }          
+                }
+                else if (words.Contains("oval"))
+                {
+                    if (words.Contains("width"))
+                    {
+                        var loc = words.IndexOf("width");
+                        int.TryParse(words[loc + 2], out width);
+                    }
+
+                    if (words.Contains("height"))
+                    {
+                        var loc = words.IndexOf("height");
+                        int.TryParse(words[loc + 2], out height);
+                    }
+
+                    var myOval = new Ellipse {Name = "oval", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0 };
+                    shapesDrawerVm.DrawShape = myOval;
+
+                }            
+
+            return words;
         }
     }
 }

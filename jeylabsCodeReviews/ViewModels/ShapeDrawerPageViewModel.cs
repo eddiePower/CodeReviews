@@ -26,6 +26,8 @@ namespace jeylabsCodeReviews.ViewModels
         {
             switch (obj.Name)
             {
+                //ToDo:  Replace Colours with variables retrieved from 
+                // ToDo: the string sort / processing.
                 case "rectangle" when obj is Rectangle rectangle:
                     rectangle.Stroke = new SolidColorBrush(Colors.Black);
                     rectangle.Fill = new SolidColorBrush(Colors.AliceBlue);
@@ -54,42 +56,40 @@ namespace jeylabsCodeReviews.ViewModels
             }
         }
 
-        //        public Shape ShowShape(Shape obj)
-        //        {
-        //            if (obj.Name == "Rectangle")
-        //            {
-        //                return (Rectangle) obj;
-        //            }
-        //
-        //            if (obj.Name == "Circle")
-        //            {
-        //                return (Ellipse) obj;
-        //            }
-        //
-        //            if (obj.Name == "Triangle")
-        //            {
-        //                return (Polygon) obj;
-        //            }
-        //
-        //            return null;
-        //        }
+        public Shape ShowShape(Shape obj)
+        {
+            if (obj.Name == "Rectangle")
+            {
+                return (Rectangle) obj;
+            }
 
-        //        public string FreeTextInput
-        //        {
-        //            get { return textIn; }
-        //            set
-        //            {
-        //                if (textIn == value) return;
-        //                textIn = value;
-        //                //send the new text value to the stringInput View MOdel for processing,
-        //                txtInputViewModel.ShapeDescription = textIn;
-        //                OnPropertyChanged(nameof(FreeTextInput));
-        //            }
-        //        }
+            if (obj.Name == "Circle")
+            {
+                return (Ellipse) obj;
+            }
+
+            if (obj.Name == "Triangle")
+            {
+                return (Polygon) obj;
+            }
+
+            return null;
+        }
+
+        public string FreeTextInput
+        {
+            get { return textIn; }
+            set
+            {
+                if (textIn == value) return;
+                textIn = value;
+                //send the new text value to the stringInput View MOdel for processing,
+                txtInputViewModel.ShapeDescription = textIn;
+                OnPropertyChanged(nameof(FreeTextInput));
+            }
+        }
 
         //will pass and recieve shapesDrawerViewModel
-
-
         public Shape DrawShape
         {
             get
