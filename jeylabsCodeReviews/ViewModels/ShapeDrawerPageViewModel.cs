@@ -56,25 +56,26 @@ namespace jeylabsCodeReviews.ViewModels
             }
         }
 
-        public Shape ShowShape(Shape obj)
-        {
-            if (obj.Name == "Rectangle")
-            {
-                return (Rectangle) obj;
-            }
-
-            if (obj.Name == "Circle")
-            {
-                return (Ellipse) obj;
-            }
-
-            if (obj.Name == "Triangle")
-            {
-                return (Polygon) obj;
-            }
-
-            return null;
-        }
+//
+//        public Shape ShowShape(Shape obj)
+//        {
+//            if (obj.Name == "Rectangle")
+//            {
+//                return (Rectangle) obj;
+//            }
+//
+//            if (obj.Name == "Circle")
+//            {
+//                return (Ellipse) obj;
+//            }
+//
+//            if (obj.Name == "Triangle")
+//            {
+//                return (Polygon) obj;
+//            }
+//
+//            return null;
+//        }
 
         public string FreeTextInput
         {
