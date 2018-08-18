@@ -125,6 +125,6 @@
     <value>Enter a shape to build press Enter to Run.</value>
   </data>
   <data name="MainWindow_ExampleHelpText" xml:space="preserve">
-    <value>Enter the shape you want to draw with its properties, For Example Draw a rectangle with a height of 23 and a width 35.</value>
+    <value>Enter the shape you want to draw with its properties, For Example Draw a rectangle with a height of 23 and a width of 35.</value>
   </data>
 </root>

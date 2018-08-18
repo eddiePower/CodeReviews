@@ -22,12 +22,16 @@ namespace jeylabsCodeReviews.ViewModels
             txtInputViewModel = new TextInputViewModel(shapesDrawerViewModel);
         }
 
+        /// <summary>
+        /// Main Shape creation method
+        /// begins the draw shape to the screen.
+        /// </summary>
+        /// <param name="obj">Base Shape - Ellipse, Rectangle, Polygon</param>
+        //Switch on the Shape Name property passed into
         private void DrawShapeToScreen(Shape obj)
         {
             switch (obj.Name)
             {
-                //ToDo:  Replace Colours with variables retrieved from 
-                // ToDo: the string sort / processing.
                 case "rectangle" when obj is Rectangle rectangle:
                     rectangle.Stroke = new SolidColorBrush(Colors.Black);
                     rectangle.Fill = new SolidColorBrush(Colors.AliceBlue);
@@ -41,7 +45,7 @@ namespace jeylabsCodeReviews.ViewModels
                     DrawShape = ellipse;
                     break;
                 case "triangle" when obj is Polygon polygon:
-                    polygon.Points = new PointCollection(new[] {new Point(0, 40), new Point(40, 0), new Point(40,90)});
+                    polygon.Points = new PointCollection(new[] { new Point(0, 40), new Point(40, 0), new Point(40,90) });
                     polygon.Stroke = new SolidColorBrush(Colors.Black);
                     polygon.Fill = new SolidColorBrush(Colors.AliceBlue);
 
@@ -56,27 +60,12 @@ namespace jeylabsCodeReviews.ViewModels
             }
         }
 
-//
-//        public Shape ShowShape(Shape obj)
-//        {
-//            if (obj.Name == "Rectangle")
-//            {
-//                return (Rectangle) obj;
-//            }
-//
-//            if (obj.Name == "Circle")
-//            {
-//                return (Ellipse) obj;
-//            }
-//
-//            if (obj.Name == "Triangle")
-//            {
-//                return (Polygon) obj;
-//            }
-//
-//            return null;
-//        }
-
+        /// <summary>
+        /// Bound to the free text entry field
+        /// on the mainWindow View.
+        /// Takes in user input to be sorted and stored
+        /// input must follow the set guideline shown on main window
+        /// </summary>
         public string FreeTextInput
         {
             get { return textIn; }

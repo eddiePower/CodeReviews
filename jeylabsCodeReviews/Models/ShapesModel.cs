@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Windows.Media;
+using System.Windows.Shapes;
 using jeylabsCodeReviews.uttils;
 
 namespace jeylabsCodeReviews.Models
@@ -7,14 +8,18 @@ namespace jeylabsCodeReviews.Models
     {
         private int width;
         private int height;
-        private List<int> points;
+        private PointCollection points;
+        private string name;
 
         public ShapesModel()
         {
+            name = "shape";
             width = 0;
             height = 0;
-            points = new List<int>();
+            points = new PointCollection();
         }
+
+        public string Name { get; set; }
 
         public int Width
         {
@@ -38,7 +43,7 @@ namespace jeylabsCodeReviews.Models
             }
         }
 
-        public List<int> Points
+        public PointCollection Points
         {
             get { return points; }
             set
@@ -47,6 +52,27 @@ namespace jeylabsCodeReviews.Models
                 points = value;
                 OnPropertyChanged(nameof(Points));
             }
+        }
+
+        public static explicit operator Rectangle(ShapesModel v)
+        {
+            var rect = new Rectangle { Name = v.Name, Width = v.Width, Height = v.Height };
+
+            return rect;
+        }
+
+        public static explicit operator Ellipse(ShapesModel v)
+        {
+            var circle = new Ellipse { Name = v.Name, Width = v.Width, Height = v.Height };
+
+            return circle;
+        }
+
+        public static explicit operator Polygon(ShapesModel v)
+        {
+            var triangle = new Polygon { Name = v.Name, Width = v.Width, Height = v.Height };
+
+            return triangle;
         }
     }
 }
