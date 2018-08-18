@@ -3,6 +3,15 @@
 A natural language shape building application, it will take in natural english and in turn build the desired shape. An Example would be <i>"Draw a Rectangle with the width of 34 and a height of 322."</i> 
 Its main purpose is to show problem solving skills from a written description General C# syntax and code principals. 
 
+Shapes Supported in this version:
+<ul>
+<li>Rectangle,</li>
+<li>Square,</li>
+<li>Circle,</li>
+<li>Oval,</li>
+<li>Triangle,</li>
+</ul>
+
 Class's so far:
 <ul>
 <li>ShapeDrawerPageViewModel - main View model owns the below view models in some way,</li>
