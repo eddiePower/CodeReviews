@@ -8,7 +8,10 @@ using jeylabsCodeReviews.ViewModels;
 namespace jeylabsCodeReviews.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// The ONLY code in this file relates to:
+    /// A: Bind the ViewModel to the UI (This View).
+    /// B: Perform any UI formating like colors, headings, UI only logic
+    ///      no business logic here! no Anti Patterns.
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -17,12 +20,16 @@ namespace jeylabsCodeReviews.Views
         public MainWindow()
         {
             InitializeComponent();
-            //Set View Model To handle data input / output
-            
+
+            //Set View Model To handle data input / output       
             pageViewModel = new ShapeDrawerPageViewModel();
             DataContext = pageViewModel;
         }
 
+        //The key binding to the enter key to trigger the create and draw shape from the user
+        //input in the syntax of Draw a/n shape with a height or n and a width of n.  these height 
+        // and width keywords can be interchanged. Shapes so far are Circle, oval, square,
+        // rectangle, Triangle.
         private void TextBox_KeyEnterUpdate(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -30,25 +37,30 @@ namespace jeylabsCodeReviews.Views
                 TextBox tBox = (TextBox)sender;
                 DependencyProperty prop = TextBox.TextProperty;
 
+                //Found on stack to allow dynamic binding / updating the ui.
                 BindingExpression binding = BindingOperations.GetBindingExpression(tBox, prop);
                 if (binding != null)
                 {
                     binding.UpdateSource();
                 }
 
+
+                //clear the canvas UI Element ready to draw a new shape.
                 ShapeDrawingCanvas.Children.Clear();
 
-                if (pageViewModel.DrawShape is Rectangle)
+                //Test the Data type of the shape held in the main page view model
+                // if its a rect, circle, or triangle then add it to the canvas - i.e. draw it.
+                if (pageViewModel.DrawShape is Rectangle rectangle)
                 {
-                    ShapeDrawingCanvas.Children.Add((Rectangle) pageViewModel.DrawShape);
+                    ShapeDrawingCanvas.Children.Add(rectangle);
                 }
-                else if (pageViewModel.DrawShape is Ellipse)
+                else if (pageViewModel.DrawShape is Ellipse ellipse)
                 {
-                    ShapeDrawingCanvas.Children.Add((Ellipse) pageViewModel.DrawShape);
+                    ShapeDrawingCanvas.Children.Add(ellipse);
                 }
-                else if (pageViewModel.DrawShape is Polygon)
+                else if (pageViewModel.DrawShape is Polygon polygon)
                 {
-                    ShapeDrawingCanvas.Children.Add((Polygon) pageViewModel.DrawShape);
+                    ShapeDrawingCanvas.Children.Add(polygon);
                 }
             }
         }

@@ -4,6 +4,13 @@ using jeylabsCodeReviews.uttils;
 
 namespace jeylabsCodeReviews.Models
 {
+    /// <summary>
+    /// Main Data Model for the Shapes created
+    /// This is also probably not needed but a good demonstration
+    /// of the Models role in MVVM type C# dev.
+    /// Holds the shape name, width, height, and a points array
+    /// for future use in triangle / polygon creation
+    /// </summary>
     public class ShapesModel : ObservableObject
     {
         private int width;
@@ -19,11 +26,20 @@ namespace jeylabsCodeReviews.Models
             points = new PointCollection();
         }
 
-        public string Name { get; set; }
+        public string Name
+        {
+            get => name;
+            set
+            {
+                if (name == value) return;
+                name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
 
         public int Width
         {
-            get { return width; }
+            get => width;
             set
             {
                 if (width == value) return;
@@ -34,7 +50,7 @@ namespace jeylabsCodeReviews.Models
 
         public int Height
         {
-            get { return height; }
+            get => height;
             set
             {
                 if (height == value) return;
@@ -48,7 +64,7 @@ namespace jeylabsCodeReviews.Models
             get { return points; }
             set
             {
-                if (points == value) return;
+                if (Equals(points, value)) return;
                 points = value;
                 OnPropertyChanged(nameof(Points));
             }
@@ -57,21 +73,18 @@ namespace jeylabsCodeReviews.Models
         public static Rectangle ConvertToRectangle(ShapesModel v)
         {
             var rect = new Rectangle { Name = v.Name, Width = v.Width, Height = v.Height };
-
             return rect;
         }
 
         public static Ellipse ConvertToEllipse(ShapesModel v)
         {
             var circle = new Ellipse { Name = v.Name, Width = v.Width, Height = v.Height };
-
             return circle;
         }
 
         public static Polygon ConvertToPolygon(ShapesModel v)
         {
             var triangle = new Polygon { Name = v.Name, Width = v.Width, Height = v.Height };
-
             return triangle;
         }
     }
