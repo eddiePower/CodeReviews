@@ -63,7 +63,7 @@ namespace jeylabsCodeReviews.ViewModels
                     }
 
                     var myRect = new ShapesModel {Name = "rectangle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0};
-                    shapesDrawerVm.DrawShape = (Rectangle) myRect;
+                    shapesDrawerVm.DrawShape = ShapesModel.ConvertToRectangle(myRect);
                 }
                 else if (words.Contains("circle") || words.Contains("oval"))
                 {
@@ -80,7 +80,7 @@ namespace jeylabsCodeReviews.ViewModels
                     }
 
                    var myCircle = new ShapesModel {Name = "circle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0 }; 
-                   shapesDrawerVm.DrawShape = (Ellipse) myCircle;
+                   shapesDrawerVm.DrawShape = ShapesModel.ConvertToEllipse(myCircle);
 
                 }
                 else if (words.Contains("triangle"))
@@ -98,7 +98,7 @@ namespace jeylabsCodeReviews.ViewModels
                     }
 
                     var myTriangle = new ShapesModel {Name = "triangle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0 };
-                    shapesDrawerVm.DrawShape = (Polygon) myTriangle;
+                    shapesDrawerVm.DrawShape = ShapesModel.ConvertToPolygon(myTriangle);
 
                 }
         }

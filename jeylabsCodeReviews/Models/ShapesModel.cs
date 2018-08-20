@@ -54,21 +54,21 @@ namespace jeylabsCodeReviews.Models
             }
         }
 
-        public static explicit operator Rectangle(ShapesModel v)
+        public static Rectangle ConvertToRectangle(ShapesModel v)
         {
             var rect = new Rectangle { Name = v.Name, Width = v.Width, Height = v.Height };
 
             return rect;
         }
 
-        public static explicit operator Ellipse(ShapesModel v)
+        public static Ellipse ConvertToEllipse(ShapesModel v)
         {
             var circle = new Ellipse { Name = v.Name, Width = v.Width, Height = v.Height };
 
             return circle;
         }
 
-        public static explicit operator Polygon(ShapesModel v)
+        public static Polygon ConvertToPolygon(ShapesModel v)
         {
             var triangle = new Polygon { Name = v.Name, Width = v.Width, Height = v.Height };
 
