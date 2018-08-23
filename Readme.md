@@ -1,6 +1,6 @@
 <p>This is a Code puzzle for a Company interview process.
 
-The Problem  
+<h4>The Problem:</h4>  
 Write a program that lets the user generate a shape with the dimensions of their choosing using a semi-natural language interface. Your solution must have two components – a “front-end” and a “back-end”.  
 User Story  
 As a user I want to generate shapes with natural language so that I don’t have to enter values in boxes  
