@@ -14,11 +14,11 @@ Its main purpose is to show problem solving skills from a written description Ge
 
 Shapes Supported in this version:
 <ul>
-<li>Rectangle,</li>
-<li>Square,</li>
-<li>Circle,</li>
-<li>Oval,</li>
-<li>Triangle,</li>
+<li>Rectangle, width x height</li>
+<li>Square, width x height</li>
+<li>Circle, width x height</li>
+<li>Oval, width x height</li>
+<li>Triangle,  width x height</li>
 </ul>
 
 Class's so far:
