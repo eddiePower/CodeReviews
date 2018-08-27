@@ -20,11 +20,11 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Label FontSize="33" Grid.Row="0" Grid.ColumnSpan="5" Content="{x:Static util:MainWindowResources.MainWindow_BuilderHelpText}" Margin="98,0,60,0" />
+        <Label FontSize="33" Grid.Row="0" Grid.ColumnSpan="5" Content="{ x:Static util:MainWindowResources.MainWindow_BuilderHelpText }" Margin="98,0,60,0" />
         <Label Grid.Row="0" Grid.ColumnSpan="5" Grid.Column="0" IsEnabled="True" HorizontalAlignment="Center"
-               VerticalAlignment="Center" Content="{x:Static util:MainWindowResources.MainWindow_ExampleHelpText }" Margin="70,78,67,10" Width="655" />
-        <TextBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" x:Name="FreeTextInputTextBox" Text="{Binding Path=FreeTextInput}" KeyUp="TextBox_KeyEnterUpdate" />
+               VerticalAlignment="Center" Content="{ x:Static util:MainWindowResources.MainWindow_ExampleHelpText }" Margin="70,78,67,10" Width="655" />
+        <TextBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" x:Name="FreeTextInputTextBox" Text="{ Binding Path=FreeTextInput }" KeyUp="TextBox_KeyEnterUpdate" />
         <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" FontSize="25" Content="Enter a shape to build press Enter to Run." HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Canvas x:Name="ShapeDrawingCanvas" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="3" DataContext="{Binding Path=DrawShape}" Margin="0,0,0,10" />
+        <Canvas x:Name="ShapeDrawingCanvas" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="3" DataContext="{ Binding Path=DrawShape }" Margin="0,0,0,10" />
     </Grid>
 </Window>

@@ -11,18 +11,21 @@ namespace jeylabsCodeReviews.Views
     /// The ONLY code in this file relates to:
     /// A: Bind the ViewModel to the UI (This View).
     /// B: Perform any UI formating like colors, headings, UI only logic
-    ///      no business logic here! no Anti Patterns.
+    ///     no business logic here! no Anti Patterns.
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ShapeDrawerPageViewModel pageViewModel;
+        private readonly ShapeDrawerPageViewModel pageViewModel;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            //Set View Model To handle data input / output       
+            //Set View Model for data binding
+            //To handle data input / output       
             pageViewModel = new ShapeDrawerPageViewModel();
+  
+            //now assign the VM to the page data context
             DataContext = pageViewModel;
         }
 
@@ -34,33 +37,30 @@ namespace jeylabsCodeReviews.Views
         {
             if (e.Key == Key.Enter)
             {
+                //SOURCED ONLINE: stack overflow for how to bind UI changes to key
                 TextBox tBox = (TextBox)sender;
                 DependencyProperty prop = TextBox.TextProperty;
 
-                //Found on stack to allow dynamic binding / updating the ui.
+                //Found on stack to allow dynamic binding / updating the UI.
                 BindingExpression binding = BindingOperations.GetBindingExpression(tBox, prop);
-                if (binding != null)
-                {
-                    binding.UpdateSource();
-                }
-
+                binding?.UpdateSource();
 
                 //clear the canvas UI Element ready to draw a new shape.
                 ShapeDrawingCanvas.Children.Clear();
 
                 //Test the Data type of the shape held in the main page view model
-                // if its a rect, circle, or triangle then add it to the canvas - i.e. draw it.
+                // if its a rectangle, circle, or triangle then add it to the canvas - i.e. draw it.
                 if (pageViewModel.DrawShape is Rectangle rectangle)
                 {
-                    ShapeDrawingCanvas.Children.Add(rectangle);
+                    ShapeDrawingCanvas.Children.Add(rectangle);  //roughly last calls before UI updates
                 }
                 else if (pageViewModel.DrawShape is Ellipse ellipse)
                 {
-                    ShapeDrawingCanvas.Children.Add(ellipse);
+                    ShapeDrawingCanvas.Children.Add(ellipse); //
                 }
                 else if (pageViewModel.DrawShape is Polygon polygon)
                 {
-                    ShapeDrawingCanvas.Children.Add(polygon);
+                    ShapeDrawingCanvas.Children.Add(polygon); //
                 }
             }
         }

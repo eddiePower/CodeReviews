@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using jeylabsCodeReviews.Models;
-using jeylabsCodeReviews.uttils;
 
 namespace jeylabsCodeReviews.ViewModels
 {
@@ -17,10 +16,10 @@ namespace jeylabsCodeReviews.ViewModels
     /// Shape name, Width, Height and pass this to the shapeDrawerVM
     /// for creation of shapes.
     /// </summary>
-    public class TextInputViewModel : ObservableObject
+    public class TextInputViewModel
     {
         private string shapeDescription;
-        private ShapeDrawerViewModel shapesDrawerVm;
+        private readonly ShapeDrawerViewModel shapesDrawerVm;
 
         public TextInputViewModel(ShapeDrawerViewModel shapesDrawerViewModel)
         {
@@ -35,17 +34,15 @@ namespace jeylabsCodeReviews.ViewModels
             {
                 if (string.Equals(shapeDescription, value)) return;
                 shapeDescription = value;
-                ProcessString(shapeDescription);
-
-                OnPropertyChanged(nameof(ShapeDescription));
+                ProcessString(shapeDescription);               
             }
         }
 
         //process user input passed from view model
-        public void ProcessString(string enteredStringValue)
+        private void ProcessString(string enteredStringValue)
         {
             //Split string by words
-            var matches = Regex.Matches(enteredStringValue, @"\w+[^\s]*\w+|\w");
+            MatchCollection matches = Regex.Matches(enteredStringValue, @"\w+[^\s]*\w+|\w");
             var words = new List<string>();
 
             //Store the words in a List of strings for analysis
@@ -54,64 +51,44 @@ namespace jeylabsCodeReviews.ViewModels
                 words.Add(match.Value.ToLower());
             }
 
-                int width = -1;
-                int height = -1;
+            //set invalid int's used later in validation for shape creation.
+            int width = -1;
+            int height = -1;
 
-            //we know it will follow the set syntax of
+
+            //we know text input syntax will follow an example of:
             //Draw a/(n) <shape> with a/(n) <measurement> of <amount>
             // and a/(n) <Measurement> of <amount>
+            //The height and width may be swapped in their placement or order of appearance
+            //both W x H or H x W are valid inputs.
+            if (words.Contains("width"))
+            {
+                var loc = words.IndexOf("width");
+                int.TryParse(words[loc + 2], out width);
+            }
+
+            if (words.Contains("height"))
+            {
+                var loc = words.IndexOf("height");
+                int.TryParse(words[loc + 2], out height);
+            }
+
+            //Now find the type of shape required and create it using the width and height
+            //minor validation if width and height are not positive numbers no shape is built.
             if (words.Contains("rectangle") || words.Contains("square"))
             {
-                    if (words.Contains("width"))
-                    {
-                        var loc = words.IndexOf("width");
-                        int.TryParse(words[loc + 2], out width);
-                    }
-
-                    if (words.Contains("height"))
-                    {
-                        var loc = words.IndexOf("height");
-                        int.TryParse(words[loc + 2], out height);
-                    }
-
-                    var myRect = new ShapesModel {Name = "rectangle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0};
-                    shapesDrawerVm.DrawShape = ShapesModel.ConvertToRectangle(myRect);
+                var myRect = new ShapesModel { Name = "rectangle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0};
+                shapesDrawerVm.BeginDrawShape = ShapesModel.ConvertToRectangle(myRect);
             }
             else if (words.Contains("circle") || words.Contains("oval"))
             {
-               if (words.Contains("width"))
-               {
-                   var loc = words.IndexOf("width");
-                   int.TryParse(words[loc + 2], out width);
-               }
-
-               if (words.Contains("height"))
-               {
-                   var loc = words.IndexOf("height");
-                   int.TryParse(words[loc + 2], out height);
-               }
-
-               var myCircle = new ShapesModel {Name = "circle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0 }; 
-               shapesDrawerVm.DrawShape = ShapesModel.ConvertToEllipse(myCircle);
-
+                var myCircle = new ShapesModel { Name = "circle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0 }; 
+                shapesDrawerVm.BeginDrawShape = ShapesModel.ConvertToEllipse(myCircle);
             }
             else if (words.Contains("triangle"))
             {
-                if (words.Contains("width"))
-                {
-                    var loc = words.IndexOf("width");
-                    int.TryParse(words[loc + 2], out width);
-                }
-
-                if (words.Contains("height"))
-                {
-                    var loc = words.IndexOf("height");
-                    int.TryParse(words[loc + 2], out height);
-                }
-
-                var myTriangle = new ShapesModel {Name = "triangle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0 };
-                shapesDrawerVm.DrawShape = ShapesModel.ConvertToPolygon(myTriangle);
-
+                var myTriangle = new ShapesModel { Name = "triangle", Width = width > -1 ? width : 0, Height = height > -1 ? height : 0 };
+                shapesDrawerVm.BeginDrawShape = ShapesModel.ConvertToPolygon(myTriangle);
             }
         }
     }

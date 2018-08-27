@@ -1,17 +1,17 @@
-﻿using System.Windows.Media;
+﻿using System;
+using System.Windows.Media;
 using System.Windows.Shapes;
-using jeylabsCodeReviews.uttils;
 
 namespace jeylabsCodeReviews.Models
 {
     /// <summary>
     /// Main Data Model for the Shapes created
     /// This is also probably not needed but a good demonstration
-    /// of the Models role in MVVM type C# dev.
+    /// of the Models role in MVVM type C# development.
     /// Holds the shape name, width, height, and a points array
     /// for future use in triangle / polygon creation
     /// </summary>
-    public class ShapesModel : ObservableObject
+    public class ShapesModel
     {
         private int width;
         private int height;
@@ -23,69 +23,77 @@ namespace jeylabsCodeReviews.Models
             name = "shape";
             width = 0;
             height = 0;
-            points = new PointCollection();
+            points = new PointCollection(); //used in polygon shapes.
         }
 
+        //Names used for shape creation such as rectangle etc
         public string Name
         {
-            get => name;
+            private get => name;
             set
             {
-                if (name == value) return;
-                name = value;
-                OnPropertyChanged(nameof(Name));
+                if (string.Equals(name, value)) return;
+                name = value;               
             }
         }
 
+        //Width property used for Shape creation
         public int Width
         {
-            get => width;
+            private get => width;
             set
             {
-                if (width == value) return;
-                width = value;
-                OnPropertyChanged(nameof(Width));
+                if (Equals(width, value)) return;
+                width = value;            
             }
         }
 
+        //height property used for shape creation
         public int Height
         {
-            get => height;
+            private get => height;
             set
             {
-                if (height == value) return;
-                height = value;
-                OnPropertyChanged(nameof(Height));
+                if (Equals(height, value)) return;
+                height = value;                
             }
         }
 
+        //point collection are used to create polygon shapes
+        // will be a set of points eg new Point(0, 40);
         public PointCollection Points
         {
-            get { return points; }
+            get => points;
             set
             {
                 if (Equals(points, value)) return;
-                points = value;
-                OnPropertyChanged(nameof(Points));
+                points = value;             
             }
         }
 
+        //method to turn this shape model into a rectangle
+        //rather then inheriting from the shape class and its overhead.
         public static Rectangle ConvertToRectangle(ShapesModel v)
         {
             var rect = new Rectangle { Name = v.Name, Width = v.Width, Height = v.Height };
             return rect;
         }
 
+        //Used to turn this model into a circle or ellipse.
         public static Ellipse ConvertToEllipse(ShapesModel v)
         {
             var circle = new Ellipse { Name = v.Name, Width = v.Width, Height = v.Height };
             return circle;
         }
 
+        //Used to turn this model into a polygon shape.
         public static Polygon ConvertToPolygon(ShapesModel v)
         {
-            var triangle = new Polygon { Name = v.Name, Width = v.Width, Height = v.Height };
+            var triangle = new Polygon { Name = v.Name, Width = v.Width, Height = v.Height };      
             return triangle;
         }
+
+        //TODO: ADD IN VALIDATION FOR SQUARE AND RECTANGLES / OVAL TO CIRCLE etc, 
+        public bool IsSquare(Rectangle rect) => Math.Abs(rect.Height - rect.Width) < 0.001;
     }
 }
